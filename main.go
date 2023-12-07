@@ -12,6 +12,7 @@ func main() {
 			X: 2,
 			Y: 4,
 		},
+		Head: "^",
 	}
 
 	var area [][]string = [][]string{

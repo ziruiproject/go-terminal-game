@@ -18,14 +18,16 @@ func (game Game) Start() {
 		fmt.Scanln(&userInput)
 
 		switch strings.ToUpper(userInput) {
-		case "UP":
+		case "W":
 			game.changeState(game.Player.Up)
-		case "DOWN":
+		case "S":
 			game.changeState(game.Player.Down)
-		case "LEFT":
+		case "A":
 			game.changeState(game.Player.Left)
-		case "RIGHT":
+		case "D":
 			game.changeState(game.Player.Right)
+		default:
+			break
 		}
 	}
 }

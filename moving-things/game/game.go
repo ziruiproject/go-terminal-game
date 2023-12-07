@@ -2,8 +2,8 @@ package game
 
 import (
 	"fmt"
+	"moving-things/model"
 	"strings"
-	"terminal-games/model"
 )
 
 type Game struct {

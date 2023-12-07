@@ -1,9 +1,9 @@
 package main
 
 import (
-	"terminal-games/game"
-	"terminal-games/gen"
-	"terminal-games/model"
+	"moving-things/game"
+	"moving-things/gen"
+	"moving-things/model"
 )
 
 func main() {

@@ -3,7 +3,8 @@ package model
 import "fmt"
 
 type Board struct {
-	Area *[][]string
+	Area      *[][]string
+	InitState [][]string
 }
 
 func (board Board) Show() {
@@ -13,6 +14,11 @@ func (board Board) Show() {
 	fmt.Println()
 }
 
+func (board *Board) Reset() {
+	*board.Area = board.InitState
+}
+
+// Mencetak posisi player
 func (board Board) DrawPlayer(player Player) {
 	(*board.Area)[player.Position.Y][player.Position.X] = "^"
 }

@@ -21,13 +21,22 @@ func main() {
 		{"#", "*", "*", "#", "*"},
 	}
 
+	// Create a deep copy of the area
+	initState := make([][]string, len(area))
+	for i := range area {
+		initState[i] = make([]string, len(area[i]))
+		copy(initState[i], area[i])
+	}
+
 	var board model.Board = model.Board{
-		Area: &area,
+		Area:      &area,
+		InitState: initState,
 	}
 
 	board.DrawPlayer(player)
 	board.Show()
-	player.Move(1, -1)
+	player.Up(1)
+	board.Reset()
 	board.DrawPlayer(player)
 	board.Show()
 }

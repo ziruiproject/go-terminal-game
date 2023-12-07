@@ -1,6 +1,7 @@
 package main
 
 import (
+	"terminal-games/game"
 	"terminal-games/model"
 )
 
@@ -33,10 +34,11 @@ func main() {
 		InitState: initState,
 	}
 
-	board.DrawPlayer(player)
-	board.Show()
-	player.Up(1)
-	board.Reset()
-	board.DrawPlayer(player)
-	board.Show()
+	var game game.Game = game.Game{
+		Board:  board,
+		Player: player,
+	}
+
+	game.Init()
+	game.Start()
 }

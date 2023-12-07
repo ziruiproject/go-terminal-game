@@ -1,13 +1,13 @@
 package model
 
-type Area struct {
-	Board string[][]
+import "fmt"
+
+type Board struct {
+	Area *[][]string
 }
 
-func (area Area) Show() {
-	for _, v := range area {
-		for _, v := range area {
-
-		}
+func (board Board) Show() {
+	for _, v := range *board.Area {
+		fmt.Println(v)
 	}
 }

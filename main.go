@@ -19,6 +19,11 @@ func main() {
 		{"#", "*", "*", "#", "*"},
 	}
 
+	var board model.Board = model.Board{
+		Area: &area,
+	}
+
 	player.SetPlayer(area)
 
+	board.Show()
 }

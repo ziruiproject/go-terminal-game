@@ -1,6 +1,8 @@
 package main
 
-import "terminal-games/model"
+import (
+	"terminal-games/model"
+)
 
 func main() {
 
@@ -23,7 +25,9 @@ func main() {
 		Area: &area,
 	}
 
-	player.SetPlayer(area)
-
+	board.DrawPlayer(player)
+	board.Show()
+	player.Move(1, -1)
+	board.DrawPlayer(player)
 	board.Show()
 }

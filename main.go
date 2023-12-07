@@ -2,37 +2,20 @@ package main
 
 import (
 	"terminal-games/game"
+	"terminal-games/gen"
 	"terminal-games/model"
 )
 
 func main() {
+	var board *model.Board = gen.GenerateMap(5, 5, 5)
 
 	var player model.Player = model.Player{
 		Position: model.Position{
 			X: 2,
 			Y: 4,
 		},
-		Head: "^",
-	}
-
-	var area [][]string = [][]string{
-		{"#", "#", "#", "*", "*"},
-		{"*", "#", "#", "#", "*"},
-		{"*", "#", "*", "#", "*"},
-		{"#", "#", "*", "*", "*"},
-		{"#", "*", "*", "#", "*"},
-	}
-
-	// Create a deep copy of the area
-	initState := make([][]string, len(area))
-	for i := range area {
-		initState[i] = make([]string, len(area[i]))
-		copy(initState[i], area[i])
-	}
-
-	var board model.Board = model.Board{
-		Area:      &area,
-		InitState: initState,
+		Head:  "^",
+		Board: board,
 	}
 
 	var game game.Game = game.Game{

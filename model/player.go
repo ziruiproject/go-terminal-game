@@ -8,11 +8,20 @@ type Position struct {
 type Player struct {
 	Position Position
 	Head     string
+	Board    *Board
 }
 
 func (player *Player) move(xPos int, yPos int) {
-	player.Position.X += xPos
-	player.Position.Y += yPos
+	newX := player.Position.X + xPos
+	newY := player.Position.Y + yPos
+
+	// Apakah # && keluar map?
+	if newX >= 0 && newX < len((*player.Board.Area)[0]) &&
+		newY >= 0 && newY < len(*player.Board.Area) &&
+		(*player.Board.Area)[newY][newX] != "#" {
+		player.Position.X = newX
+		player.Position.Y = newY
+	}
 }
 
 func (player *Player) Up() {

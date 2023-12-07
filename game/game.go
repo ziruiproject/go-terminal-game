@@ -7,7 +7,7 @@ import (
 )
 
 type Game struct {
-	Board  model.Board
+	Board  *model.Board
 	Player model.Player
 }
 

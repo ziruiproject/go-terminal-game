@@ -2,7 +2,7 @@ package gen
 
 import (
 	"math/rand"
-	"moving-things/model"
+	"terminal-games/moving-things/model"
 	"time"
 )
 

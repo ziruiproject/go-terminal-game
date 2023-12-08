@@ -1,3 +1,3 @@
-module moving-things
+module terminal-games/moving-things
 
 go 1.20

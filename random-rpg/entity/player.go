@@ -5,10 +5,10 @@ import (
 )
 
 type Player struct {
-	entity Entity
-	Inv    map[string]int
+	Entity Entity
+	Inv    [10]Item
 }
 
 func (player Player) SayHello() {
-	fmt.Println("Hello, my name is " + player.entity.Name)
+	fmt.Println("Hello, my name is " + player.Entity.Name)
 }

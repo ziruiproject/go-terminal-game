@@ -1,13 +1,25 @@
 package main
 
-import "github.com/ziruiproject/go-terminal-game/tree/main/random-rpg/entity"
+import (
+	"fmt"
+
+	"github.com/ziruiproject/go-terminal-game/tree/main/random-rpg/entity"
+)
 
 func main() {
 	var player entity.Player = entity.Player{
-		Name:   "Zirui",
-		Health: 100,
-		Money:  25,
+		Entity: entity.Entity{
+			Name:    "Zirui",
+			Health:  100,
+			Defense: 10,
+			Attack:  7,
+		},
 	}
 
-	player.SayHello()
+	player.Inv[0] = entity.Item{
+		Name:   "Wooden Sword",
+		Amount: 1,
+		Rarity: 1,
+	}
+	fmt.Println(player.Inv[0])
 }

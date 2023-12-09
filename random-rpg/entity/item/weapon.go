@@ -8,7 +8,7 @@ type Weapon struct {
 	Durability int
 }
 
-func (weapon *Weapon) WoodenSword() *Weapon {
+func WoodenSword() *Weapon {
 	return &Weapon{
 		Item: entity.Item{
 			Name:   "Wooden Sword",

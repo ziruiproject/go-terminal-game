@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/ziruiproject/go-terminal-game/tree/main/random-rpg/entity"
+	"github.com/ziruiproject/go-terminal-game/tree/main/random-rpg/entity/item"
 )
 
 func main() {
@@ -16,10 +17,6 @@ func main() {
 		},
 	}
 
-	player.Inv[0] = entity.Item{
-		Name:   "Wooden Sword",
-		Amount: 1,
-		Rarity: 1,
-	}
+	player.Inv[0] = item.WoodenSword().Item
 	fmt.Println(player.Inv[0])
 }

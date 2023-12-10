@@ -1,16 +1,14 @@
 package item
 
-import "github.com/ziruiproject/go-terminal-game/tree/main/random-rpg/entity"
-
 type Weapon struct {
-	Item       entity.Item
+	Item       Item
 	Damage     int
 	Durability int
 }
 
 func WoodenSword() *Weapon {
 	return &Weapon{
-		Item: entity.Item{
+		Item: Item{
 			Name:   "Wooden Sword",
 			Amount: 1,
 			Rarity: 1,

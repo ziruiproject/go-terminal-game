@@ -2,23 +2,41 @@ package entity
 
 import (
 	"fmt"
+
+	"github.com/ziruiproject/go-terminal-game/tree/main/random-rpg/entity/item"
 )
 
-type Player struct {
-	Entity  Entity
-	Inv     [10]Item
-	InvSlot int
+type Equipment struct {
+	MainHand *item.Weapon
+	Offhand  *item.Weapon
 }
 
-func (player *Player) AddToInventory(item Item) {
+type Player struct {
+	Entity    Entity
+	InvSlot   int
+	Inv       [10]*item.Item
+	Equipment Equipment
+}
+
+func (player *Player) AddToInventory(item item.Item) {
 	if player.InvSlot < len(player.Inv) {
-		player.Inv[player.InvSlot] = item
+		player.Inv[player.InvSlot] = &item
 		player.InvSlot++
 	} else {
 		fmt.Println("Inventory Full!")
 	}
 }
 
-func (player Player) SayHello() {
-	fmt.Println("Hello, my name is " + player.Entity.Name)
+func (player *Player) ShowInventory() {
+	for _, v := range player.Inv {
+		fmt.Print(v)
+	}
+}
+
+func (player *Player) EquipToHand(item item.Weapon) {
+	player.Equipment.MainHand = &item
+}
+
+func (player *Player) EquipToOffhand(item item.Weapon) {
+	player.Equipment.Offhand = &item
 }

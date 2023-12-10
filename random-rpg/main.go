@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/ziruiproject/go-terminal-game/tree/main/random-rpg/entity"
 	"github.com/ziruiproject/go-terminal-game/tree/main/random-rpg/entity/item"
 )
@@ -17,6 +15,8 @@ func main() {
 		},
 	}
 
-	player.Inv[0] = item.WoodenSword().Item
-	fmt.Println(player.Inv[0])
+	woodenSword := item.WoodenSword()
+	player.AddToInventory(woodenSword.Item)
+	player.ShowInventory()
+	player.EquipToHand(*woodenSword)
 }

@@ -6,16 +6,10 @@ import (
 	"github.com/ziruiproject/go-terminal-game/tree/main/random-rpg/entity/item"
 )
 
-type Equipment struct {
-	MainHand *item.Weapon
-	Offhand  *item.Weapon
-}
-
 type Player struct {
-	Entity    Entity
-	InvSlot   int
-	Inv       [10]*item.Item
-	Equipment Equipment
+	Mob     Mob
+	InvSlot int
+	Inv     [10]*item.Item
 }
 
 func (player *Player) AddToInventory(item item.Item) {
@@ -34,9 +28,9 @@ func (player *Player) ShowInventory() {
 }
 
 func (player *Player) EquipToHand(item item.Weapon) {
-	player.Equipment.MainHand = &item
+	player.Mob.Equipment.MainHand = &item
 }
 
 func (player *Player) EquipToOffhand(item item.Weapon) {
-	player.Equipment.Offhand = &item
+	player.Mob.Equipment.Offhand = &item
 }

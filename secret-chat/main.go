@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+
+	"golang.org/x/net/websocket"
 )
 
 type User struct {
@@ -25,28 +28,50 @@ func (user *User) sendMessage(room Room, msg string) {
 	}
 }
 
+// func main() {
+
+// user1 := User{
+// 	Name: "Yudha",
+// }
+
+// user2 := User{
+// 	Name: "Sugiharto",
+// }
+
+// room := Room{
+// 	Participant: &[]User{user1, user2},
+// 	Chat:        make(chan Message, 10),
+// }
+
+// }
+
+func WebSocketHandler(ws *websocket.Conn) {
+	defer ws.Close()
+
+	for {
+		var message string
+		err := websocket.Message.Receive(ws, &message)
+		if err != nil {
+			fmt.Println("Error receiving message:", err)
+			return
+		}
+
+		fmt.Println("Received message:", message)
+
+		err = websocket.Message.Send(ws, message)
+		if err != nil {
+			fmt.Println("Error sending message:", err)
+			return
+		}
+	}
+}
+
 func main() {
+	http.Handle("/ws", websocket.Handler(WebSocketHandler))
+	fmt.Println("WebSocket server listening on :8080")
 
-	user1 := User{
-		Name: "Yudha",
-	}
-
-	user2 := User{
-		Name: "Sugiharto",
-	}
-
-	room := Room{
-		Participant: &[]User{user1, user2},
-		Chat:        make(chan Message, 10),
-	}
-
-	go func() {
-		user1.sendMessage(room, "Halo Gan")
-		user2.sendMessage(room, "Halo juga gan")
-		close(room.Chat)
-	}()
-
-	for data := range room.Chat {
-		fmt.Println("Message: " + data.Message)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Println("Error starting server:", err)
 	}
 }

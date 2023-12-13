@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-
-	"golang.org/x/net/websocket"
+	"net"
 )
 
 type User struct {
@@ -28,50 +26,51 @@ func (user *User) sendMessage(room Room, msg string) {
 	}
 }
 
-// func main() {
+func main() {
 
-// user1 := User{
-// 	Name: "Yudha",
-// }
+	user1 := User{
+		Name: "Yudha",
+	}
 
-// user2 := User{
-// 	Name: "Sugiharto",
-// }
+	user2 := User{
+		Name: "Sugiharto",
+	}
 
-// room := Room{
-// 	Participant: &[]User{user1, user2},
-// 	Chat:        make(chan Message, 10),
-// }
+	room := Room{
+		Participant: &[]User{user1, user2},
+		Chat:        make(chan Message, 10),
+	}
 
-// }
+	fmt.Println(room)
 
-func WebSocketHandler(ws *websocket.Conn) {
-	defer ws.Close()
+	listener, err := net.Listen("tcp", "localhost:8080")
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	defer listener.Close()
+
+	fmt.Println("Server is listening on port 8080")
 
 	for {
-		var message string
-		err := websocket.Message.Receive(ws, &message)
+		// Accept incoming connections
+		conn, err := listener.Accept()
 		if err != nil {
-			fmt.Println("Error receiving message:", err)
-			return
+			fmt.Println("Error:", err)
+			continue
 		}
 
-		fmt.Println("Received message:", message)
-
-		err = websocket.Message.Send(ws, message)
-		if err != nil {
-			fmt.Println("Error sending message:", err)
-			return
-		}
+		// Handle client connection in a goroutine
+		go handleClient(conn)
 	}
 }
 
-func main() {
-	http.Handle("/ws", websocket.Handler(WebSocketHandler))
-	fmt.Println("WebSocket server listening on :8080")
+func handleClient(conn net.Conn) {
+	defer conn.Close()
 
-	err := http.ListenAndServe(":8080", nil)
-	if err != nil {
-		fmt.Println("Error starting server:", err)
-	}
+	// Read and process data from the client
+	// ...
+
+	// Write data back to the client
+	// ...
 }

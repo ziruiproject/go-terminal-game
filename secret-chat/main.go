@@ -28,10 +28,12 @@ func (user *User) sendMessage(room Room, msg string) {
 
 func main() {
 
+	// user 1
 	user1 := User{
 		Name: "Yudha",
 	}
 
+	// user 2
 	user2 := User{
 		Name: "Sugiharto",
 	}
